@@ -90,7 +90,7 @@ app.get('/api/getallTweets', async (req, res) => {
 
 app.post('/api/getallTweetsbyId', async (req, res) => {
     try {
-        const tweets = await tweetLib.getAllTweetsbyId(req.body.id);
+        const tweets = await tweetLib.getAllTweetsbyId(req.body.userid);
         res.send(tweets);
     } catch (error) {
         res.status(500).send("Failed to Fetch Tweets: " + error.message);

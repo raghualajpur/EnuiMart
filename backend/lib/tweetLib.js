@@ -2,7 +2,7 @@ const tweetModel = require('../models/tweetModel');
 const userModel = require('../models/userModel');
 
 module.exports.getAllTweetsbyId = async function(id){
-    return await tweetModel.find({userid: id});
+    return await tweetModel.find({userid:id});
 }
 
 module.exports.getAllTweets = async function(){
