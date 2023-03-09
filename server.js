@@ -17,7 +17,7 @@ const userLib = require('./backend/lib/userLib');
 const tweetLib = require('./backend/lib/tweetLib');
 
 app.get("/", function(req, res) {
-    res.send("Welcome to Wheel Pay");
+    res.send("Welcome to Twitter");
 })
 
 mongoose.set("strictQuery", true)
