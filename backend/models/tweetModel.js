@@ -6,6 +6,7 @@ const tweetSchema = new mongoose.Schema(
         "tweetmessage": {type: String, required: true},
         "createdDate": {type: Date, default: Date.now()}
     }
+    
 )
 
 module.exports = mongoose.model('tweet', tweetSchema);

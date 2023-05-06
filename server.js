@@ -14,6 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const userLib = require('./backend/lib/userLib');
+const wheelpayuserLib = require('./backend/lib/wheelpayuserLib');
 const tweetLib = require('./backend/lib/tweetLib');
 
 app.get("/", function(req, res) {
@@ -47,7 +48,7 @@ app.post('/api/ValidateUser', async (req, res) => {
     const password = req.body.password;
 
     try {
-        const user = await userModel.findOne({email: email});
+        const user = await wheelpayuserLib.findOne({email: email});
 
         if (!user) {
             return res.status(401).send('Invalid email or password');
@@ -58,7 +59,7 @@ app.post('/api/ValidateUser', async (req, res) => {
                 "email": user.email,
             }
             
-            res.send({user: userdata, status: "Logged In Successfully"});
+            res.send({user: userdata, status: "Verfied Succesfully"});
         }
         else{
             return res.status(401).send('Invalid email or password');
@@ -103,5 +104,15 @@ app.post('/api/deleteTweet', async (req, res) => {
         res.send("Tweet Deleted Successfully");
     } catch (error) {
         res.status(500).send("Failed to Delete Tweet: " + error.message);
+    }
+});
+
+
+app.post('/api/createWheelPayNewUser', async (req, res) => {
+    try {
+        await wheelpayuserLib.createUser(req.body);
+        res.send("Registered successfully");
+    } catch (error) {
+        res.status(500).send("Failed to register: " + error.message);
     }
 });
